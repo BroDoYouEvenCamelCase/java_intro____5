@@ -25,7 +25,7 @@ public class Exercise04_ReverseAString {
 
         String reversedName = "";
 
-        for (int i = 3; i >= 0; i--) {
+        for (int i = 3; i  >= 0; i--) {
             reversedName += name.charAt(i);
         }
 
