@@ -1,158 +1,220 @@
 package projects;
 
-import utilities.ScannerHelper;
+import utilities.RandomNumberGenerator;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Project04 {
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+        // Task 11 //
+        /*
+        Write a program that asks user to enter a sentence as a String and count
+        how many a or A letters that sentence has and print it with given below
+        message. ex. This sentence has 3 a or A letters.
+         */
+        System.out.println("**** TASK 11 ****");
+        Scanner input = new Scanner(System.in);
+        System.out.println("Please input a string:");
+        String ans11 = input.nextLine();
+        int counter = 0;
 
-        System.out.println("Task 1 ----------------------------");
+        if (ans11.length() == 0 || (!ans11.contains("a") && !ans11.contains("A"))) {
+            System.out.println("This sentence does not have any characters.");
+        }
+        else {
+            for (int i = 0; i < ans11.length(); i++) {
+                if (ans11.charAt(i) == 'a' || ans11.charAt(i) == 'A') counter++;
+            }
+            System.out.println("This sentence has " + counter + " a or A letters.");
+        }
 
-        System.out.println("Please enter a String");
-        String str = scanner.nextLine();
-        if (str.length() < 8) {
-            System.out.println("This String does not have 8 characters");
+        // Task 10 //
+        /*
+        Write a program that asks user to enter a word, and check if it is palindrome or not.
+        Palindrome: It is a word that is read the same backward as forward
+        •EX/ kayak, civic, madam
+         */
+        System.out.println("**** Task 10 ****");
+        System.out.println("Please enter a string: ");
+        String ans10 = input.nextLine();
+        boolean isPalindrome = true;
+
+        if (ans10.length() < 1) {
+            System.out.println("This word does not have 1 or more characters.");
         } else {
-            System.out.println(str.substring(str.length() - 4) + str.substring(4, str.length() - 4) + str.substring(0, 4));
+            for (int i = 0, j = ans10.length() - 1; i <= ans10.length() / 2; i++, j--) {
+                if (ans10.charAt(i) == ans10.charAt(j)) {
+                    isPalindrome = false;
+                    break;
+                }
+            }
+            if (isPalindrome) System.out.println("This word is a palindrome");
+            else System.out.println("This word is not a palindrome");
         }
 
-        System.out.println("Task 2-----------------------------");
+        // Task 9
+        /*
+        Write a program that asks user to enter a positive number.
+        Print all the number starting from 1 to given number. But, print “Foo” for the
+        numbers divided by 2, “Bar” for the numbers divided by 3 and “FooBar” for
+        the numbers divided by both 2 and 3.
+         */
+        System.out.println("**** Task 9 ****");
+        System.out.println("Please enter a positive number:");
+        int ans9 = input.nextInt();
 
-        Scanner inputReader = new Scanner(System.in);
-        System.out.println("Please enter a sentence");
-        String sentence = inputReader.nextLine();
+        for (int i = 1; i <= ans9; i++) {
+            if (i % 6 == 0) System.out.println("FooBar");
+            else if (i % 3 == 0) System.out.println("Bar");
+            else if (i % 2 == 0) System.out.println("Foo");
+            else System.out.println(i);
+        }
 
-        if (sentence.length() <= 1) {
-            System.out.println("This sentence does not have 2 or more words to swap ");
+        // Task 8 //
+        /*
+        Write a program that asks user to enter a sentence as a String, and count
+        how many words that sentence has, and print it with given below message.
+        NOTE: Write a program that handles any String
+        NOTE: First check if the given sentence has 2 words at least. If not, then just
+        print “This sentence does not have multiple words”.
+         */
+        System.out.println("**** Task 8 ****");
+        System.out.println("Please enter a sentence:");
+        input.nextLine();
+        String ans8 = input.nextLine().trim(); // I love animals ([I] , [love], [animals])
+
+        if (ans8.contains(" ")) {
+            String[] array8 = ans8.split(" ");
+            System.out.println("This sentence has " + array8.length + " words.");
         } else {
-            System.out.println(sentence.substring(sentence.length() - 4) + sentence.substring(8, sentence.length() - 4) + sentence.substring(0, 8));
+            System.out.println("This sentence does not have multiple words.");
         }
 
+        // Task 7 //
+        /*
+        Write a program that generates 2 random numbers between 0 and 25 (0 and
+        25 are included), Then print all numbers between 2 random numbers that
+        cannot be divided by 5 in ascending order. ex. 4 - 6 - 7 - 8 - 9....
+         */
+        System.out.println("**** Task 7 ****");
+        int num7A = RandomNumberGenerator.getARandomNumber(0, 25);
+        int num7B = RandomNumberGenerator.getARandomNumber(0, 25);
 
+        String ans7 = "";
 
-        System.out.println("Task 3 -------------------------------------");
+        int min7 = Math.min(num7A, num7B);
+        int max7 = Math.max(num7A, num7B);
 
-
-        String str1 = "These books are so stupid";
-        String str2 = "I like idiot behaviors";
-        String str3 = "I had some stupid t-shirts in the past and also some idiot\n" +
-                "look shoes";
-
-        String badWord1 = "stupid";
-        String badWord2 = "idiot";
-        String goodWord = "nice";
-
-        System.out.println(str1.replace(badWord1, goodWord));
-        System.out.println(str2.replace(badWord2, goodWord));
-        System.out.println(str3.replace(badWord1, goodWord).replace(badWord2, goodWord));
-
-
-        System.out.println("Task 4-------------------------");
-
-        String name = ScannerHelper.getAName();
-        if (name.length() > 2) {
-            if (name.length() % 2 == 0)
-                System.out.println(name.substring(name.length() / 2 - 1, name.length() / 2 + 1));
-            else System.out.println(name.charAt(name.length() / 2));
-        } else {
-            System.out.println("Invalid input!!!");
-        }
-
-        System.out.println("Task 5 -----------------------------------------");
-
-        System.out.println("Please enter a country");
-        String country = scanner.nextLine();
-        if (country.length() >= 5) System.out.println(country.substring(2, country.length() - 2));
-        else System.out.println("Invalid input!!!");
-
-        System.out.println("Task 6---------------------------------------------");
-        String address = ScannerHelper.getAnAddress();
-
-        System.out.println(address.replace("a", "*")
-                .replace("A", "*").replace("e", "#")
-                .replace("E", "*").replace("i", "+")
-                .replace("I", "+").replace("u", "$")
-                .replace("U", "$").replace("o", "@")
-                .replace("O", "@"));
-
-        System.out.println("Task 7 -----------------------------");
-
-        int randomNum1 = (int) (Math.random() * 26);
-        int randomNum2 = (int) (Math.random() * 26);
-        String result = "";
-        for (int i = Math.min(randomNum1, randomNum2); i <= Math.max(randomNum1, randomNum2); i++) {
-            if (i % 5 != 0) result += i + " - ";
-        }
-        System.out.println(result.substring(0, result.length() - 3));
-
-        System.out.println("Task 8 ------------------");
-
-        System.out.println("Please enter sentence");
-        Scanner inputReader1 = new Scanner(System.in);
-        String strTask8 = inputReader1.nextLine();
-
-        int count = 1;
-
-        for (int i = 0; i < strTask8.length() - 1; i++) {
-            if ((strTask8.charAt(i) == ' ') && (strTask8.charAt(i + 1) != ' '))
-            {
-                count++;
+        for (int i = min7; i <= max7; i++) {
+            if (i % 5 != 0) {
+                ans7 += i;
+                if (i + 1 == max7 && i % 5 != 0) break;
+                else {
+                    ans7 += " - ";
+                }
             }
         }
-        System.out.println("Number of words in a string : " + count);
 
-        if ( count <= 1 ) {
-            System.out.println("This sentence does not have multiple words. ");
+        System.out.println("Min random num = " + min7);
+        System.out.println("Max random num = " + max7);
+        System.out.println(ans7);
+
+
+        // Task 6 //
+        /*
+        Write a program that asks user to enter their full address.
+        Replace all letter ‘a’ or ‘A’ with ‘*’
+        Replace all letter ‘e’ or ‘E’ with ‘#’
+        Replace all letter ‘i’ or ‘I’ with ‘+’
+        Replace all letter ‘u’ or ‘U’ with ‘$’
+        Replace all letter ‘o’ or ‘O’ with ‘@’
+        Then, print result after replacements
+         */
+
+
+        // Task 5 //
+        /*
+        Write a program that asks user to enter a country.
+        First check if length of country is more than 5. If not, then print “Invalid
+        input!!!”
+        If length of country is more than 5, then print country name without first 2
+        and last 2 characters
+         */
+
+
+        // Task 4 //
+        /*
+        Write a program that asks user to enter their name.
+        First check if length of name is more than 2 and is even or odd
+        If length of name is less than 2, then print “Invalid input!!!”
+        If length of name is odd, then print middle character from the name
+        If length of name is even, then print middle 2 characters from the name
+         */
+
+
+        // Task 3 //
+        /*
+        Assume that you are given some Strings as below, and you want to replace
+        bad words with good words.
+        String str1 = “These books are so stupid”;
+        String str2 = “I like idiot behaviors”;
+        String str3 = “I had some stupid t-shirts in the past and also some idiot
+        look shoes”;
+        Write a Java program that checks any given String and replace bad words
+        like “stupid” and “idiot” with “nice” keyword
+         */
+        System.out.println("\n***** Task 3 *****");
+        String str3A = "These books are so stupid!";
+        System.out.println(replaceBadWords(str3A));
+
+
+
+
+        // Task 2 //
+        /*
+        Write a program that asks user to enter a sentence, and swaps first and last
+        words of this sentence and print the modified sentence
+        Check: sentence has at least 2 words
+         */
+        System.out.println("**** Task 2 ****");
+        System.out.println("Please enter a sentence:");
+        String ans2 = input.nextLine().trim(); // Selenium is an automation tool
+
+        if (ans2.contains(" ")) {
+            String firstWord = ans2.substring(0, ans2.indexOf(" "));
+            String lastWord = ans2.substring(ans2.lastIndexOf(" ") + 1);
+
+            System.out.println(lastWord
+                    + ans2.substring(ans2.indexOf(" "), ans2.lastIndexOf(" ") + 1)
+                    + firstWord);
+        } else {
+            System.out.println("This sentence does not have 2 or more words to swap");
         }
 
-        System.out.println("Task 9---------------------------------");
-
-        System.out.println("Please enter a positive number: ");
-        int number = scanner.nextInt();
-        for (int l = 1; l <= number; l++) {
-            if (l % 6 == 0) System.out.println("FooBar");
-            else if (l % 2 == 0) System.out.println("Foo");
-            else if (l % 3 == 0) System.out.println("Bar");
-            else System.out.println(l);
-        }
-
-        System.out.println("Task 10 ------------------------------------");
-
-        String originalWay, palindromed = "";
-        Scanner in = new Scanner(System.in);
-        System.out.println("Enter a string to check if it's a palindrome");
-        originalWay = in.nextLine();
-
-        int length = originalWay.length();
-
-        for (int m = length - 1; m >= 0; m--)
-            palindromed = palindromed + originalWay.charAt(m);
-        if (length < 1) {
-            System.out.println("The word does not have 1 or more characters");
-
-        } else if (originalWay.equals(palindromed))
-            System.out.println("The word is a palindrome.");
-        else
-            System.out.println("The word isn't a palindrome.");
-
-        System.out.println("Task 11-------------------------");
-
-        System.out.println("Please enter a sentence");
-        Scanner input1 = new Scanner(System.in);
-        String sentence11 = input1.nextLine();
 
 
-        int countL = 0;
 
+        // Task 1 //
+        /*
+        Write a program that asks user to enter a String, and swaps first and last 4
+        characters of this String and print the modified String
+         */
+        System.out.println("\n***** Task 1 *****");
+        System.out.println("Please enter a string:");
+        String ans1 = input.nextLine().trim();
 
-        for (int i = 0; i < sentence11.length(); i++) {
-            if (sentence11.toLowerCase().charAt(i) == 'a') countL++;
-        }
-        if (countL == 0) {
-            System.out.println("This sentence does not have any characters");
-        }
-        System.out.println("This sentence has " + countL + " a or A letters");
+        if (ans1.length() >= 8) {
+            String lastFour = ans1.substring(ans1.length() - 4);
+            String firstFour = ans1.substring(0, 4);
+            String middle = ans1.substring(4,ans1.length() - 4);
+            System.out.println(lastFour + middle + firstFour);
+        } else System.out.println("This string does not have 8 characters!");
+    }
 
-    }}
+    public static String replaceBadWords(String s) {
+        s = s.replace("stupid", "nice");
+        s = s.replace("idiot", "nice");
+        return s;
+    }
+}
