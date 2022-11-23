@@ -7,7 +7,7 @@ public class _14_CountDuplicates {
 //        System.out.println(Arrays.toString(str.split(" ")));
 //        System.out.println(str.split(" ").length);
 
-        int[] numbers = {2, 3, 7, 1, 1, 7, 1};
+        int[] numbers = {0,-4,-7,0,5,10,45,-7,0};
 //        for (int i = 0; i < numbers.length - 1; i++) {
 //            System.out.println(numbers[i]);
 //            System.out.println("i = " + i);
@@ -62,7 +62,7 @@ public class _14_CountDuplicates {
             }
         }
 
-//        System.out.println(dup); // -> "7,1,"
-        return dup.split(",").length;
+//               System.out.println(dup); // -> "7,1,"
+                 return dup.split(",").length;
     }
 }
